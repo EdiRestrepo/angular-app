@@ -12,4 +12,12 @@ export class App {
   protected title: string = 'angular-app';
 
   users: string[] = ['Jhon', 'Maria', 'Pedro', 'Ana'];
+  //users!: string[];
+
+  visible: boolean = false;
+
+  setVisible(): void {
+    this.visible = this.visible ? false : true;
+    console.log('Hemos hecho click en ',this.visible);
+  }
 }
