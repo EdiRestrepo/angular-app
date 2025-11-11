@@ -1,13 +1,45 @@
-<div *ngIf="visible; else notEnabled">
+<!-- <div *ngIf="visible; else notEnabled">
   <h1>{{ title }}</h1>
-</div>
+</div> -->
 
 
 <button (click)="setVisible()">
   {{visible ? 'Hide Users' : 'Show Users'}}
 </button>
 
-<div *ngIf="visible">
+@if(visible){
+  <h2>{{title}}</h2>
+
+  @if(users != undefined && users.length > 0){
+  <table>
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(user of users; track $index){
+
+        <tr>
+          <td>{{ $index + 1 }}</td>
+          <td>{{ user }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+  }@else{
+    <p>No users available.</p>
+  }
+}@else{
+  <h2>Lo sentimos no esta disponible la pagina!</h2>
+}
+
+<app-counter [title]="subTitle" (counterPadre)="setCounter($event)" />
+<h3>Contador Padre {{counter}}</h3>
+
+
+<!-- <div *ngIf="visible">
   <table *ngIf="(users != undefined && users.length > 0) else noUsers">
     <thead>
       <tr>
@@ -25,10 +57,10 @@
   <ng-template #noUsers>
     <p>No users available.</p>
   </ng-template>
-</div>
+</div>-->
 
-<ng-template #notEnabled>
+<!-- <ng-template #notEnabled>
   <p>Feature not enabled.</p>
-</ng-template>
+</ng-template> -->
 
 <router-outlet />
